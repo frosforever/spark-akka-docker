@@ -5,6 +5,20 @@ and cluster modes.
 The basic application provides a count of the words containing a provided letter
 in some random txt file I found online (https://wordpress.org/plugins/about/readme.txt)
 
+## TL;DR
+Stand up a cluster via
+```
+$ sbt dockerComposeUp
+```
+Hit it with
+```
+$ curl localhost:9000/run/a
+```
+Bring it all down with
+```
+$ sbt dockerComposeStop
+```
+
 ## Standalone
 
 To get this up and running, from the `sbt` console run
@@ -34,7 +48,7 @@ $ curl localhost:9000/run/a
 ```
 And check on the Spark Application UI at `http://localhost:4050/`
 
-# Cluster
+## Cluster
 To run via a cluster in docker, stand up the spark cluster which includes one spark master,
 one spark worker, and one application / spark driver
 ```
@@ -45,6 +59,13 @@ hit the endpoint as usual
 $ curl localhost:9000/run/a
 ```
 and open the Spark UI on master by navigating to `http://localhost:8080/`
+
+## With the sbt plugin
+Using the [sbt-docker-compose](https://github.com/Tapad/sbt-docker-compose) plugin automates all this in one go,
+building the updated image, publishing it locally, and bringing up the service.
+```
+> dockerComposeUp
+```
 
 ## Credits
 Inspired by and shamelessly ripped off from:

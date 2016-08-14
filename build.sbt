@@ -23,3 +23,7 @@ javaOptions in Universal ++= Seq(
   "-J-Xmx1024m",
   "-J-Xms1024m"
 )
+
+enablePlugins(DockerComposePlugin)
+
+dockerImageCreationTask := (publishLocal in Docker).value
